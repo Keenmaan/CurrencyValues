@@ -13,6 +13,7 @@ public class CurrencyValue extends Model {
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
     public Long id;
 
+    @Column(precision=20,scale=4)
     public BigDecimal value;
 
     @ManyToOne

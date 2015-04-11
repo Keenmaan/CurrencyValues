@@ -13,7 +13,7 @@ public class Global extends GlobalSettings {
         Logger.info("NBP files not found. Trying to download from www.nbp.pl");
         Logger.info("NBP files have been downloaded successfully.");
         System.out.println("ZONK");
-        controllers.Application.initializeData();
+        controllers.Initialization.initializeData();
     }
     public void onStop(Application app){
         Logger.info("Application shutdown...");

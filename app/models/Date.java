@@ -17,4 +17,8 @@ public class Date extends Model{
 
     @OneToMany(targetEntity=CurrencyValue.class,mappedBy="dateModel")
     public List<CurrencyValue> currencyValues;
+
+    public static Model.Finder<String,Date> find = new Model.Finder<>(
+            String.class, Date.class
+    );
 }

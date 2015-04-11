@@ -17,7 +17,7 @@ create table currency (
 
 create table currency_value (
   id                        bigint auto_increment not null,
-  value                     decimal(38),
+  value                     decimal(20,4),
   currency_id               bigint,
   date_model_date           date,
   constraint pk_currency_value primary key (id))
