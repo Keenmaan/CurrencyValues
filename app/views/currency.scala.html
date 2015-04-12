@@ -2,8 +2,8 @@
 
 @header()
 <h1>Details of @currency.name</h1>
-<svg></svg>
-<div>Od: Miesiąc
+<svg></svg> @*Creation of graph.*@
+<div>From: Month
     <select id="minMonthSelect">
         <option selected value="01">01</option>
         <option value="02">02</option>
@@ -17,7 +17,7 @@
         <option value="10">10</option>
         <option value="11">11</option>
         <option value="12">12</option>
-    </select> Rok
+    </select> Year
     <select id="minYearSelect">
         <option selected value="2007">2007</option>
         <option value="2008">2008</option>
@@ -29,7 +29,7 @@
         <option value="2014">2014</option>
     </select>
 </div>
-<div>Do: Miesiąc
+<div>From: Month
     <select id="maxMonthSelect">
         <option selected value="01">01</option>
         <option value="02">02</option>
@@ -43,7 +43,7 @@
         <option value="10">10</option>
         <option value="11">11</option>
         <option selected value="12">12</option>
-    </select> Rok
+    </select> Year
     <select id="maxYearSelect">
         <option value="2007">2007</option>
         <option value="2008">2008</option>
@@ -55,28 +55,8 @@
         <option selected value="2014">2014</option>
     </select>
 </div>
-<button type="dateSelectButton" onClick="currencyGraph(@jsonList)">Click Me!</button>
+<button type="dateSelectButton" onClick="currencyGraph(@jsonList)">Update</button>
 <h2 id="wrong"></h2>
-<div>
-
-    @*<table class="table table-bordered table-hover table-responsive">*@
-        @*<thead class="panel-heading bg-primary">*@
-            @*<tr>*@
-                @*<th>Date:</th>*@
-                @*<th>Value: </th>*@
-            @*</tr>*@
-        @*</thead>*@
-        @*<tbody class="panel-body">*@
-        @*for(p<-currency.currencyValues){*@
-            @*<tr>*@
-                @*<td>@p.dateModel.date</td>*@
-                @*<td>@p.value</td>*@
-            @*</tr>*@
-        @*}*@
-        @*</tbody>*@
-    @*</table>*@
-
-</div>
 
 <script>window.onload=currencyGraph(@Html(jsonList))</script>
 @footer()

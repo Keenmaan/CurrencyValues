@@ -13,7 +13,7 @@ function currencyGraph(jsonList) {
 
     el = document.getElementById("wrong");
     if(minYear > maxYear || (minYear == maxYear && minMonth >= maxMonth)) {
-        el.innerHTML = "zonk";
+        el.innerHTML = "Error. Invalid date ranges selected.";
         return;
     }
     else
@@ -113,9 +113,8 @@ function currencyGraph(jsonList) {
 // The table generation function
 function tabulate(data, columns) {
     var table = d3.select("body").append("table")
-            .attr("style", "margin-left: 200px")
-            .style("border-collapse", "collapse")// <= Add this line in
-            .style("border", "2px black solid"), // <= Add this line in
+            .attr("style", "margin-left: auto")
+            .attr("class","table table-bordered table-hover")
         thead = table.append("thead"),
         tbody = table.append("tbody");
 

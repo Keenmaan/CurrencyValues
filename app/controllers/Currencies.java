@@ -13,7 +13,6 @@ import java.math.BigDecimal;
 public class Currencies extends Controller{
 
     public static Currency createCurrency(String name, String code, String factor,String avgValue){
-        //if there is no currency of the same code or name (!)
         Currency currency = Currency.find.where().eq("code", code).findUnique();
 
         if (currency==null){
@@ -68,7 +67,6 @@ public class Currencies extends Controller{
         currency.lowestValue=min;
         currency.highestValue=max;
         currency.avgValue=avg;
-        System.out.println("Calculation save dla "+currency.name+" min= "+min+" max="+max);
         currency.update();
     }
 }

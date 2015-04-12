@@ -82,36 +82,24 @@ public class Initialization extends Controller {
             Node node = nodeList.item(i);
             Element element = (Element) node;
             Date currencyDate=Currencies.createDate(date);
-            CurrencyValue currencyValue=Currencies.createCurrencyValue(
+            Currencies.createCurrencyValue(
                     getElement("kod_waluty", element),
                     currencyDate,
                     getElement("kurs_sredni", element)
             );
-            if (currencyValue!=null){
-                System.out.println("Nazwa waluty: "+currencyValue.currency.name);
-                System.out.println("Średnia wartość: "+currencyValue.value);
-            }
         }
     }
 
     public static void createCurrencies(NodeList nodeList){
         for (int i=0;i<nodeList.getLength();i++){
             Node node = nodeList.item(i);
-            System.out.println("Current element: "+node.getNodeName());
             Element element = (Element) node;
-            Currency currency=Currencies.createCurrency(
+            Currencies.createCurrency(
                     getElement("nazwa_waluty",element),
                     getElement("kod_waluty",element),
                     getElement("przelicznik",element),
                     getElement("kurs_sredni",element)
             );
-            if (currency!=null){
-                System.out.println("Nazwa waluty: "+currency.name);
-                System.out.println("Kod: "+currency.code);
-                System.out.println("Przelicznik: "+currency.factor);
-                System.out.println("Średnia wartość: "+currency.avgValue);
-            }
-
         }
     }
 
@@ -120,8 +108,6 @@ public class Initialization extends Controller {
     }
 
     public static void initializeData() {
-        List<File> fileList=new ArrayList<>();
-
         Logger.info("Downloading currency average values from NBP. ");
 
         readFiles(downloadCurrencyValuesFiles(downloadFilesList()));
@@ -162,9 +148,7 @@ public class Initialization extends Controller {
 
     public static List<File> downloadCurrencyValuesFiles(File file) {
         List<File> fileList = new ArrayList<>();
-        System.out.println("downloadCurrencyValuesFiles method:");
         String path = Play.current().path().getAbsolutePath();
-        path = path + "/tmpData/";
 
         Scanner scanner = null;
         try {
@@ -194,30 +178,22 @@ public class Initialization extends Controller {
 
             int year = Integer.parseInt(s.substring(5, 7)) + 2000;
             int month = Integer.parseInt(s.substring(7, 9));
-            //System.out.println("   Year: " + year + ", Month: " + month + ", Day:");
             if (startDate.getYear() == year && startDate.getMonth().getValue() == month) {
-                //System.out.println("It is a proper filename.");
                 previousFileName = s;
             } else if ((startDate.getMonth().getValue() < month &&
                     startDate.getYear() == year)
                     || startDate.getYear()<year){
-                //System.out.println("This file is for download: " + previousFileName + ".xml");
                 m++;
                 File f= downloadCurrencyFile(previousFileName);
                 if(f!=null){
                     fileList.add(f);
                     k++;
                 }
-                //previousFileName=previousFileName.substring(s.lastIndexOf('z')+1);
                 if (startDate.getYear() < year) {
                     startDate = startDate.withYear(year);
                 }
                 startDate = startDate.withMonth(month);
-                //startDate.withDayOfMonth(day);
             }
-//            System.out.println("   Year: " + startDate.getYear()
-//                    + ", Month: " + startDate.getMonthValue()
-//                    + ", Day:" + startDate.getDayOfMonth());
         }
         scanner.close();
 

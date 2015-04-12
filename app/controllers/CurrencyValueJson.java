@@ -8,11 +8,8 @@ import java.time.YearMonth;
  * Created by keen on 4/12/15.
  */
 public class CurrencyValueJson {
-    String name;
-    String code;
     String date;
     String value;
-
     public CurrencyValueJson(Date date, BigDecimal value) {
         YearMonth yearMonth=YearMonth.of(date.toLocalDate().getYear(),date.toLocalDate().getMonth());
         this.date=yearMonth.toString();

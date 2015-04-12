@@ -16,8 +16,6 @@ public class Application extends Controller {
 
     public static Result index() {
         return ok(index.render(models.Currency.find.all()));
-        //Date.find.all()
-        //dates : List[Date]
     }
 
     public static Result currencyView(String code){
