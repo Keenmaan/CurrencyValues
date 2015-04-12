@@ -19,6 +19,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -26,6 +28,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+
+import static controllers.Currencies.currencyCalculationSave;
 
 /**
  * Created by keen on 4/11/15.
@@ -76,11 +80,8 @@ public class Initialization extends Controller {
     public static void updateCurrencyData(NodeList nodeList,String date){
         for (int i=0;i<nodeList.getLength();i++){
             Node node = nodeList.item(i);
-            //System.out.println("Current element: "+node.getNodeName());
             Element element = (Element) node;
-            Date currencyDate=Currencies.createDate(
-                date
-            );
+            Date currencyDate=Currencies.createDate(date);
             CurrencyValue currencyValue=Currencies.createCurrencyValue(
                     getElement("kod_waluty", element),
                     currencyDate,
@@ -124,6 +125,25 @@ public class Initialization extends Controller {
         Logger.info("Downloading currency average values from NBP. ");
 
         readFiles(downloadCurrencyValuesFiles(downloadFilesList()));
+        calculateMinMaxValues();
+    }
+
+    public static void calculateMinMaxValues(){
+        List<Currency> currencyList = Currency.find.all();
+        for (Currency currency : currencyList){
+            BigDecimal minValue=currency.avgValue;
+            BigDecimal maxValue=currency.avgValue;
+            BigDecimal avgValue=new BigDecimal(0);
+            for (CurrencyValue currencyValue : currency.currencyValues){
+                if (minValue.compareTo(currencyValue.value)==1)
+                    minValue=currencyValue.value;
+                else if (maxValue.compareTo(currencyValue.value)==-1)
+                    maxValue=currencyValue.value;
+                avgValue=avgValue.add(currencyValue.value);
+            }
+            avgValue=avgValue.divide(new BigDecimal(currency.currencyValues.size()), RoundingMode.HALF_UP);
+            currencyCalculationSave(currency, minValue, maxValue, avgValue);
+        }
     }
 
     public static File downloadFilesList() {

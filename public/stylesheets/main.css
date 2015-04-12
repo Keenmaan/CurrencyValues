@@ -1,0 +1,54 @@
+.chart {
+    background-color: #eee;
+}
+
+.chart rect {
+    stroke: white;
+    fill: steelblue;
+}
+
+.axis {
+    shape-rendering: crispEdges;
+}
+
+.x.axis line {
+    stroke: black;
+}
+
+.y.axis line {
+    stroke: black;
+}
+
+.axis text {
+    font-size: 12px;
+}
+.xGrids {
+    stroke: lightgray;
+}
+
+.yGrids {
+    stroke: lightgray;
+}
+
+path {
+    stroke: red;
+    stroke-width: 2;
+    fill: none;
+}
+
+line {
+    stroke: black;
+}
+
+
+.xLabel {
+    text-anchor: middle;
+}
+
+.yLabel {
+    text-anchor: end;
+}
+
+#wrong {
+    color: red;
+}

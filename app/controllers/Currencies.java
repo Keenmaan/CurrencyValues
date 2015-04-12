@@ -47,14 +47,28 @@ public class Currencies extends Controller{
         Currency currency = Currency.find.where().eq("code", code).findUnique();
 
         if (currency!=null)  {
-            CurrencyValue currencyValue = new CurrencyValue();
-            currencyValue.currency=currency;
-            avgValue=avgValue.replaceAll(",",".");
-            currencyValue.value=new BigDecimal(avgValue);
-            currencyValue.dateModel=date;
-            currencyValue.save();
-            return currencyValue;
+            CurrencyValue currencyValue = CurrencyValue.find.where()
+                    .eq("dateModel",date)
+                    .where().eq("currency",currency)
+                    .findUnique();
+            if (currencyValue==null){
+                currencyValue = new CurrencyValue();
+                currencyValue.currency=currency;
+                avgValue=avgValue.replaceAll(",",".");
+                currencyValue.value=new BigDecimal(avgValue);
+                currencyValue.dateModel=date;
+                currencyValue.save();
+                return currencyValue;
+            }
         }
-        else return null;
+        return null;
+    }
+
+    public static void currencyCalculationSave(Currency currency,BigDecimal min, BigDecimal max, BigDecimal avg){
+        currency.lowestValue=min;
+        currency.highestValue=max;
+        currency.avgValue=avg;
+        System.out.println("Calculation save dla "+currency.name+" min= "+min+" max="+max);
+        currency.update();
     }
 }

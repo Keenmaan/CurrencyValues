@@ -22,4 +22,7 @@ public class CurrencyValue extends Model {
     @ManyToOne
     public Date dateModel;
 
+    public static Model.Finder<String,CurrencyValue> find = new Model.Finder<>(
+            String.class, CurrencyValue.class
+    );
 }

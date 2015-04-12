@@ -8,9 +8,9 @@ create table currency (
   code                      varchar(255),
   name                      varchar(255),
   factor                    integer,
-  lowest_value              decimal(38),
-  highest_value             decimal(38),
-  avg_value                 decimal(38),
+  lowest_value              decimal(20,4),
+  highest_value             decimal(20,4),
+  avg_value                 decimal(20,4),
   constraint uq_currency_code unique (code),
   constraint pk_currency primary key (id))
 ;

@@ -1,6 +1,32 @@
-@(message: String)
+@(values : List[models.Currency])
 
 @main("Welcome to Play") {
 
-    @message
+    @*dates.map{date=>*@
+        @*<div>@date.date</div>*@
+    @*}*@
+    <div class="panel panel-default">
+        <table class="table table-bordered table-hover table-responsive">
+            <thead class="panel-heading bg-primary">
+                <tr>
+                    <th>Name:</th>
+                    <th>Code: </th>
+                    <th>Lowest Value:</th>
+                    <th>Highest Value: </th>
+                    <th>Average Value:</th>
+                </tr>
+            </thead>
+            <tbody class="panel-body">
+    @for(p<-values){
+        <tr>
+            <td>@p.name</td>
+            <td><a href="/currency/@p.code">@p.code</a></td>
+            <td>@p.lowestValue</td>
+            <td>@p.highestValue </td>
+            <td>@p.avgValue</td>
+        </tr>
+    }
+            </tbody>
+        </table>
+    </div>
 }
