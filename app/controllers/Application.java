@@ -30,7 +30,6 @@ public class Application extends Controller {
         List<CurrencyValue> currencyValueList=Currency.find.where().eq("code",code).findUnique().currencyValues;
         List<CurrencyValueJson> cvJsonList = new ArrayList<>();
 
-        int i=0;
         for (CurrencyValue currencyValue : currencyValueList){
             cvJsonList.add(new CurrencyValueJson(
                     currencyValue.dateModel.date,

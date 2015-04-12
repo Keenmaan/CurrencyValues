@@ -7,9 +7,6 @@ import play.mvc.Controller;
 
 import java.math.BigDecimal;
 
-/**
- * Created by keen on 4/11/15.
- */
 public class Currencies extends Controller{
 
     public static Currency createCurrency(String name, String code, String factor,String avgValue){

@@ -112,9 +112,9 @@ function currencyGraph(jsonList) {
 
 // The table generation function
 function tabulate(data, columns) {
-    var table = d3.select("body").append("table")
-            .attr("style", "margin-left: auto")
-            .attr("class","table table-bordered table-hover")
+    var table = d3.select(".container").append("table")
+            .attr("style", "width:200px; margin-left:50px")
+            .attr("class","table table-bordered table-hover text-center")
         thead = table.append("thead"),
         tbody = table.append("tbody");
 
@@ -124,6 +124,7 @@ function tabulate(data, columns) {
         .data(columns)
         .enter()
         .append("th")
+        .attr("class","text-center panel-heading bg-primary")
         .text(function(column) { return column; });
 
     // create a row for each object in the data

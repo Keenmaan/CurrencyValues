@@ -31,9 +31,6 @@ import java.util.regex.Pattern;
 
 import static controllers.Currencies.currencyCalculationSave;
 
-/**
- * Created by keen on 4/11/15.
- */
 public class Initialization extends Controller {
     public static void readFiles(List<File> fileList) {
 
@@ -55,7 +52,6 @@ public class Initialization extends Controller {
             e.printStackTrace();
         }
         if (doc!=null){
-            System.out.println("A "+file.getName()+" is read. "+doc.getDocumentElement().getNodeName());
             return doc.getElementsByTagName("pozycja");
         }
         return null;
@@ -71,7 +67,6 @@ public class Initialization extends Controller {
             e.printStackTrace();
         }
         if (doc!=null){
-            System.out.println("DATA: "+doc.getElementsByTagName("data_publikacji").item(0).getTextContent());
             return doc.getElementsByTagName("data_publikacji").item(0).getTextContent();
         }
         return null;
@@ -109,7 +104,6 @@ public class Initialization extends Controller {
 
     public static void initializeData() {
         Logger.info("Downloading currency average values from NBP. ");
-
         readFiles(downloadCurrencyValuesFiles(downloadFilesList()));
         calculateMinMaxValues();
     }
@@ -197,7 +191,6 @@ public class Initialization extends Controller {
         }
         scanner.close();
 
-        System.out.println("End of downloadCurrencyValuesFiles method.");
         Logger.info(+m+" out of "+k+" files have been downloaded.");
         return fileList;
     }
