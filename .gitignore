@@ -16,3 +16,4 @@ dist
 /tmpData
 /data
 /test
+project/.sbtserver.lock

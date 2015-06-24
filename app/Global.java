@@ -10,7 +10,7 @@ public class Global extends GlobalSettings {
     public void onStart(Application app){
         Logger.info("Application is starting.");
         Logger.info("Looking for NBP files.");
-        //controllers.Initialization.initializeData();
+        controllers.Initialization.initializeData();
     }
     public void onStop(Application app){
         Logger.info("Application shutdown...");
