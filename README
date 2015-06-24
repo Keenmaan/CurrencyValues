@@ -1,4 +1,4 @@
-This is your new Play application
-=================================
+Application gathering currency values from NBP. Data range from 1.1.2007 to 31.12.2014, only including first day of every month. Gathered data is displayed in a table and a graph. You may select which currency and data range you prefer to review.
 
-This file will be packaged with your application, when using `activator dist`.
+Play version 2.3.5
+JDK 8.0.45
